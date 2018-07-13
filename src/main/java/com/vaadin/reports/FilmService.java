@@ -31,7 +31,7 @@ public class FilmService {
 
     public  void printTable() throws IOException {
         //Create the PDF documents, define the page size and rotate it
-        String destination = "results/sakila/films.pdf";
+        String destination = "/home/kezia/films.pdf";
         PdfWriter writer = new PdfWriter(destination);
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf, PageSize.A4.rotate());
@@ -61,17 +61,7 @@ public class FilmService {
     }
 
     public ArrayList<Film> getAllFilms() {
-//        //Create a session
-//        Reader reader = Resources.getResourceAsReader("SqlMapConfig.xml");
-//        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-//        SqlSession session = sqlSessionFactory.openSession();
-//
-//        //Add the film mapper to the session
-//        session.getConfiguration().addMapper(FilmMapper.class);
-//
-//        //Create a film mapper
-//        FilmMapper filmMapper = session.getMapper(FilmMapper.class);
-
+        //Calls getAllFilms method on FilmMapper
         return filmMapper.getAllFilms();
     }
 

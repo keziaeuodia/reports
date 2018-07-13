@@ -18,7 +18,6 @@ public class VaadinUI extends UI {
 
     private Film film;
     private Binder<Film> binder = new Binder<Film>(Film.class);
-
     private Grid<Film> grid = new Grid(Film.class);
     private TextField title = new TextField("Title");
     private TextField description = new TextField("Description");
@@ -28,6 +27,14 @@ public class VaadinUI extends UI {
     private TextField rating = new TextField("Rating");
 //    private Button save = new Button("Save", e -> saveCustomer());
 //    private Button add = new Button("Add new film", e -> addNewFilm());
+    private Button print = new Button("Print", e -> {
+        try {
+            filmService.printTable();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    });
+
 
     @Override
     protected void init(VaadinRequest request) {
@@ -40,7 +47,7 @@ public class VaadinUI extends UI {
 
         binder.bindInstanceFields(this);
 
-        VerticalLayout layout = new VerticalLayout(grid, title, description, language, rating);
+        VerticalLayout layout = new VerticalLayout(grid, title, description, language, rating, print);
         setContent(layout);
     }
 
