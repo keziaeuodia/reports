@@ -65,6 +65,11 @@ public class FilmService {
         return filmMapper.getAllFilms();
     }
 
+    public void addNewFilm() {
+        //Calls addNewFilm method on FilmMapper
+        filmMapper.addNewFilm();
+    }
+
     public void writeHeaders(Table table, PdfFont font){
         //Define the table's headers
         String headers =  "Film ID;Title;Description;Release Year;Language;Length;Rating";

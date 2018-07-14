@@ -25,8 +25,8 @@ public class VaadinUI extends UI {
     private TextField language = new TextField("Language");
 //    private TextField length = new TextField("Length");
     private TextField rating = new TextField("Rating");
-//    private Button save = new Button("Save", e -> saveCustomer());
-//    private Button add = new Button("Add new film", e -> addNewFilm());
+    private Button save = new Button("Save", e -> saveNewFilm());
+    private Button add = new Button("Add new film", e -> addNewFilm());
     private Button print = new Button("Print", e -> {
         try {
             filmService.printTable();
@@ -41,13 +41,14 @@ public class VaadinUI extends UI {
 
         updateGrid();
 
-        grid.setColumns("title", "description", "language", "length", "rating");
+        grid.setColumns("title", "description", "language", "rating");
         grid.addSelectionListener(e -> updateForm());
         grid.setSizeFull();
 
         binder.bindInstanceFields(this);
 
-        VerticalLayout layout = new VerticalLayout(grid, title, description, language, rating, print);
+        VerticalLayout form = new VerticalLayout(title, description, language, rating, save);
+        VerticalLayout layout = new VerticalLayout(grid, add, print, form);
         setContent(layout);
     }
 
@@ -75,17 +76,19 @@ public class VaadinUI extends UI {
 //        length.setVisible(visible);
         rating.setVisible(visible);
 //        save.setVisible(visible);
+        save.setVisible(visible);
     }
 
-//    private void addNewFilm() {
-//        grid.asSingleSelect().isEmpty();
-//        setFormVisible(true);
-//        film = grid.asSingleSelect().getValue();
-//        binder.setBean(film);
-//    }
+    private void addNewFilm() {
+        grid.asSingleSelect().isEmpty();
+        setFormVisible(true);
+        film = grid.asSingleSelect().getValue();
+        binder.setBean(film);
+    }
 
-//    private void saveCustomer() {
-//        service.update(film);
-//        updateGrid();
-//    }
+    private void saveNewFilm() {
+        addNewFilm();
+        filmService.addNewFilm();
+        updateGrid();
+    }
 }
