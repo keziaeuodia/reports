@@ -65,9 +65,9 @@ public class FilmService {
         return filmMapper.getAllFilms();
     }
 
-    public void addNewFilm() {
+    public void addNewFilm(Film film) {
         //Calls addNewFilm method on FilmMapper
-        filmMapper.addNewFilm();
+        filmMapper.addNewFilm(film);
     }
 
     public void writeHeaders(Table table, PdfFont font){

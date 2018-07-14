@@ -82,13 +82,15 @@ public class VaadinUI extends UI {
     private void addNewFilm() {
         grid.asSingleSelect().isEmpty();
         setFormVisible(true);
-        film = grid.asSingleSelect().getValue();
-        binder.setBean(film);
     }
 
     private void saveNewFilm() {
-        addNewFilm();
-        filmService.addNewFilm();
+        film.setTitle(title.getValue());
+        film.setDescription(description.getValue());
+        film.setLanguage(language.getValue());
+        film.setRating(rating.getValue());
+        binder.setBean(film);
+        filmService.addNewFilm(binder);
         updateGrid();
     }
 }
